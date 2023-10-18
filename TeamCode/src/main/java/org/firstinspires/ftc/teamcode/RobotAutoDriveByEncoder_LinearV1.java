@@ -36,7 +36,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import java.util.Base64;
-
+@Disabled
 /*
  * This OpMode illustrates the concept of driving a path based on encoder counts.
  * The code is structured as a LinearOpMode
@@ -87,6 +87,7 @@ public class RobotAutoDriveByEncoder_LinearV1 extends LinearOpMode {
     static final double     TURN_SPEED            = 0.4;
 
     @Override
+
     public void runOpMode() {
 robot.init();
         // Initialize the drive system variables.
@@ -105,9 +106,9 @@ robot.init();
         robot.rightbackDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         robot.leftfrontDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        robot.leftfrontDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        robot.leftfrontDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        robot.leftfrontDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        robot.rightfrontDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        robot.leftbackDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        robot.rightbackDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         // Send telemetry message to indicate successful Encoder reset
         telemetry.addData("Starting at",  "%7d,%7d,%7d,%7d",
@@ -153,9 +154,9 @@ robot.init();
 
             // Determine new target position, and pass to motor controller
             newLeftFrontTarget =  robot.leftfrontDrive.getCurrentPosition() + (int)(leftInches * COUNTS_PER_INCH);
-            newRightFrontTarget =  robot.leftfrontDrive.getCurrentPosition() + (int)(leftInches * COUNTS_PER_INCH);
-            newLeftBackTarget =  robot.leftfrontDrive.getCurrentPosition() + (int)(leftInches * COUNTS_PER_INCH);
-            newRightBackTarget =  robot.leftfrontDrive.getCurrentPosition() + (int)(leftInches * COUNTS_PER_INCH);
+            newRightFrontTarget =  robot.rightfrontDrive.getCurrentPosition() + (int)(rightInches * COUNTS_PER_INCH);
+            newLeftBackTarget =  robot.leftbackDrive.getCurrentPosition() + (int)(leftInches * COUNTS_PER_INCH);
+            newRightBackTarget =  robot.rightbackDrive.getCurrentPosition() + (int)(rightInches * COUNTS_PER_INCH);
 
             robot.leftfrontDrive.setTargetPosition(newLeftFrontTarget);
             robot.rightfrontDrive.setTargetPosition(newRightFrontTarget);

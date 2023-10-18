@@ -30,11 +30,10 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
-@Disabled
+
 /*
  * This OpMode illustrates the concept of driving a path based on encoder counts.
  * The code is structured as a LinearOpMode
@@ -61,8 +60,8 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * Remove or comment out the @Disabled line to add this OpMode to the Driver Station OpMode list
  */
 
-@Autonomous(name="AutoEncoderShorter", group="Robot")
-public class RobotAutoDriveByEncoder_LinearV2 extends LinearOpMode {
+@Autonomous(name="Blue_Close_To_Board_Going_Left", group="Robot")
+public class RobotAutoDriveByEncoder_BlueCloseLeft extends LinearOpMode {
 
     /* Declare OpMode members. */
     RobotHardwareV1 robot = new RobotHardwareV1(this);
@@ -80,12 +79,11 @@ public class RobotAutoDriveByEncoder_LinearV2 extends LinearOpMode {
     static final double     WHEEL_DIAMETER_INCHES   = 3.779527559906;     // For figuring circumference
     static final double     COUNTS_PER_INCH         = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) /
                                                       (WHEEL_DIAMETER_INCHES * 3.1415);
-    static final double     DRIVE_SPEED             = 1.00;
+    static final double     DRIVE_SPEED             = 0.6;
     static final double     NORMAL_SPEED            = 0.4;
     static final double     TURN_SPEED            = 0.4;
 
     @Override
-
     public void runOpMode() {
 robot.init();
         // Initialize the drive system variables.
@@ -122,11 +120,10 @@ robot.init();
 
         // Step through each leg of the path,
         // Note: Reverse movement is obtained by setting a negative distance (not speed)
+        encoderDrive(NORMAL_SPEED,  6,  6, 5);  // S1: Go straight a bit
+        encoderDrive(TURN_SPEED, -15, 15, 4.0); // S2: turn right 90 degrees
+        encoderDrive(DRIVE_SPEED, 48, 48, 4.0); // S3: go straight to end in right park
 
-        // all you need to change should be this:
-        encoderDrive(NORMAL_SPEED,  60,  60, 5);  // S1: Go straight a bit
-        encoderDrive(TURN_SPEED, 15, -15, 4.0); // S2: turn 90 degrees
-        encoderDrive(DRIVE_SPEED, 24, 24, 4.0); // S3: go straight to end in right park
 
         telemetry.addData("Path", "Complete");
         telemetry.update();

@@ -160,7 +160,6 @@ public class RobotTeleopTank_IterativeV1 extends OpMode{
                 leftbackDrive.setPower(drivespeed);
                 rightbackDrive.setPower(-drivespeed);
         }
-//
 //        // Use gamepad buttons to move the arm up (Y) and down (A)
 //        if (gamepad1.y)
 //            leftArm.setPower(ARM_UP_POWER);
@@ -180,9 +179,9 @@ public class RobotTeleopTank_IterativeV1 extends OpMode{
      */
     @Override
     public void stop() {
-        leftbackDrive.setPower(0);
-        rightbackDrive.setPower(0);
         leftfrontDrive.setPower(0);
         rightfrontDrive.setPower(0);
+        leftbackDrive.setPower(0);
+        rightbackDrive.setPower(0);
     }
 }
